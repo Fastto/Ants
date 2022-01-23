@@ -40,6 +40,10 @@ public class Detector : MonoBehaviour
                 _ant.OnFoodTouchedHandler(other);
             }
         }
+        else if (other.CompareTag("Wall") && CompareTag("CollisionDetector"))
+        {
+            _ant.OnWallTouchHandler(other);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

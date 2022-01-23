@@ -76,6 +76,7 @@ public class Ant : MonoBehaviour
         {
             if (MostIntensiveToFoodMarker != null)
             {
+                Debug.DrawLine(transform.position, MostIntensiveToFoodMarker.transform.position);
                 transform.up = Vector3.Lerp(transform.up,
                     (MostIntensiveToFoodMarker.transform.position - transform.position).normalized, .25f);
             }
@@ -85,6 +86,7 @@ public class Ant : MonoBehaviour
         {
             if (MostIntensiveToHomeMarker != null)
             {
+                Debug.DrawLine(transform.position, MostIntensiveToHomeMarker.transform.position);
                 transform.up = Vector3.Lerp(transform.up,
                     (MostIntensiveToHomeMarker.transform.position - transform.position).normalized, .25f);
             }
@@ -169,6 +171,8 @@ public class Ant : MonoBehaviour
             _markersIntensivity = 1f;
             _markersIntensivityBurningRate = MarkersBurningRate;
             _goToTagretPosition = false;
+            MostIntensiveToFoodMarker = null;
+            ToFoodList.Clear();
         }
     }
 
@@ -190,6 +194,8 @@ public class Ant : MonoBehaviour
             _markersIntensivity = 1f;
             _markersIntensivityBurningRate = MarkersBurningRate;
             _goToTagretPosition = false;
+            MostIntensiveToHomeMarker = null;
+            ToHomeList.Clear();
         }
     }
 
@@ -206,13 +212,31 @@ public class Ant : MonoBehaviour
     }
 
     public void OnMarkerLostHandler(Collider2D other)
-    {        if (other.CompareTag("ToHome"))
+    {
+        Marker marker = other.gameObject.GetComponentInChildren<Marker>();
+        if (other.CompareTag("ToHome"))
         {
+            // if (MostIntensiveToHomeMarker == marker)
+            // {
+            //     MostIntensiveToHomeMarker = null;
+            // }
+            
             ToHomeList.Remove(other.gameObject.GetComponentInChildren<Marker>());
         }
         else if (other.CompareTag("ToFood"))
         {
+            // if (MostIntensiveToFoodMarker == marker)
+            // {
+            //     MostIntensiveToFoodMarker = null;
+            // }
+            
             ToFoodList.Remove(other.gameObject.GetComponentInChildren<Marker>());
         }
+    }
+
+    public void OnWallTouchHandler(Collider2D other)
+    {
+        transform.position -= transform.up;
+        transform.Rotate(Vector3.forward, Random.Range(-180, 180));
     }
 }
