@@ -28,11 +28,11 @@ public class Ant : MonoBehaviour
     private Vector3 _targetPosition;
     private bool _goToTagretPosition;
 
-    public GameObject MostIntensiveToHomeMarker { get; set; }
-    public GameObject MostIntensiveToFoodMarker { get; set; }
+    public Marker MostIntensiveToHomeMarker { get; set; }
+    public Marker MostIntensiveToFoodMarker { get; set; }
 
-    public List<GameObject> ToFoodList { get; } = new List<GameObject>();
-    public List<GameObject> ToHomeList { get; } = new List<GameObject>();
+    public List<Marker> ToFoodList { get; } = new List<Marker>();
+    public List<Marker> ToHomeList { get; } = new List<Marker>();
 
 
     private void Start()
@@ -43,6 +43,8 @@ public class Ant : MonoBehaviour
         _markersIntensivity = 1f;
         _markersIntensivityBurningRate = MarkersBurningRate;
         _goToTagretPosition = false;
+
+        Speed += Random.Range(-2, 2);
     }
 
     // Update is called once per frame
@@ -95,7 +97,7 @@ public class Ant : MonoBehaviour
         }
 
         //Return to sandbox area
-        if (transform.position.magnitude > 70)
+        if (transform.position.magnitude > 100)
         {
             transform.position = transform.position * .98f;
             transform.up = -1 * transform.up;
@@ -114,10 +116,9 @@ public class Ant : MonoBehaviour
             if (ToHomeList.Count > 0)
             {
                 MostIntensiveToHomeMarker = ToHomeList[0];
-                foreach (GameObject point in ToHomeList)
+                foreach (Marker point in ToHomeList)
                 {
-                    if (point.GetComponentInChildren<Marker>().Intensivity >
-                        MostIntensiveToHomeMarker.GetComponentInChildren<Marker>().Intensivity)
+                    if (point.Intensivity > MostIntensiveToHomeMarker.Intensivity)
                     {
                         MostIntensiveToHomeMarker = point;
                     }
@@ -134,10 +135,9 @@ public class Ant : MonoBehaviour
             if (ToFoodList.Count > 0)
             {
                 MostIntensiveToFoodMarker = ToFoodList[0];
-                foreach (GameObject point in ToFoodList)
+                foreach (Marker point in ToFoodList)
                 {
-                    if (point.GetComponentInChildren<Marker>().Intensivity >
-                        MostIntensiveToFoodMarker.GetComponentInChildren<Marker>().Intensivity)
+                    if (point.Intensivity > MostIntensiveToFoodMarker.Intensivity)
                     {
                         MostIntensiveToFoodMarker = point;
                     }
@@ -195,25 +195,24 @@ public class Ant : MonoBehaviour
 
     public void OnMarkerFoundHandler(Collider2D other)
     {
-        if (other.CompareTag("ToHome"))
+        if (_isBusy && other.CompareTag("ToHome"))
         {
-            ToHomeList.Add(other.gameObject);
+            ToHomeList.Add(other.gameObject.GetComponentInChildren<Marker>());
         }
-        else if (other.CompareTag("ToFood"))
+        else if (!_isBusy && other.CompareTag("ToFood"))
         {
-            ToFoodList.Add(other.gameObject);
+            ToFoodList.Add(other.gameObject.GetComponentInChildren<Marker>());
         }
     }
 
     public void OnMarkerLostHandler(Collider2D other)
-    {
-        if (other.CompareTag("ToHome"))
+    {        if (other.CompareTag("ToHome"))
         {
-            ToHomeList.Remove(other.gameObject);
+            ToHomeList.Remove(other.gameObject.GetComponentInChildren<Marker>());
         }
         else if (other.CompareTag("ToFood"))
         {
-            ToFoodList.Remove(other.gameObject);
+            ToFoodList.Remove(other.gameObject.GetComponentInChildren<Marker>());
         }
     }
 }

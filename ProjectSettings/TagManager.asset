@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Wall
+  - Food
+  - Home
+  - ToHome
+  - ToFood
+  - ObjectDetector
+  - MarkerDetector
+  - CollisionDetector
   layers:
   - Default
   - TransparentFX

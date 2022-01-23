@@ -91,7 +91,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550151427560826052}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e6aa0625be7b74527ade0274a339c3fc, type: 2}
   m_CullingMode: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 5161336928523269974}
   - component: {fileID: 200718478308623666}
   - component: {fileID: 8622424602218969030}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObjectDetector
   m_TagString: ObjectDetector
   m_Icon: {fileID: 0}
@@ -147,9 +147,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
+  m_Offset: {x: 0, y: 4}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7
 --- !u!114 &8622424602218969030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,9 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToHomeMarker: {fileID: 2031494480309005177, guid: b8451a47496c34767af5cb5fdb025109, type: 3}
   ToFoodMarker: {fileID: 6663537663583614575, guid: 34a66d07b08394e1195eeaf059471d3b, type: 3}
-  MarkersAmount: 100
-  MarkersBurningRate: 0.98
-  TimeToMark: 0.1
+  MarkersAmount: 50
+  MarkersBurningRate: 0.93
+  TimeToMark: 0.25
   Speed: 15
 --- !u!50 &1212137217206968407
 Rigidbody2D:
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 2373449888441401639}
   - component: {fileID: 8908837210058480338}
   - component: {fileID: 8904435203513630111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CollisionDetector
   m_TagString: CollisionDetector
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 3824085510082788295}
   - component: {fileID: 4035046956264943630}
   - component: {fileID: 9207323966578909600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MarkerDetector
   m_TagString: MarkerDetector
   m_Icon: {fileID: 0}
@@ -342,9 +342,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
+  m_Offset: {x: 0, y: 3}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 5
 --- !u!114 &9207323966578909600
 MonoBehaviour:
   m_ObjectHideFlags: 0
