@@ -11,14 +11,12 @@ public class Marker : MonoBehaviour
     [SerializeField] public float BurningRatePerSec = .9f;
 
     [SerializeField] public float IntensivityLimit = .05f;
-    
+
     private Collider2D _collider;
 
-    public Vector3 position {
-        get
-        {
-            return transform.position;
-        }
+    public Vector3 position
+    {
+        get { return transform.position; }
     }
 
     private float LifeCounter = 0f;

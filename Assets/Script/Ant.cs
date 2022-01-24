@@ -27,13 +27,15 @@ public class Ant : MonoBehaviour
     private float _markersIntensivityBurningRate;
     private Vector3 _targetPosition;
     private bool _goToTagretPosition;
+    private bool _isOnWall;
+    
 
     public Marker MostIntensiveToHomeMarker { get; set; }
     public Marker MostIntensiveToFoodMarker { get; set; }
 
     public List<Marker> ToFoodList { get; } = new List<Marker>();
     public List<Marker> ToHomeList { get; } = new List<Marker>();
-
+    
 
     private void Start()
     {
@@ -43,6 +45,7 @@ public class Ant : MonoBehaviour
         _markersIntensivity = 1f;
         _markersIntensivityBurningRate = MarkersBurningRate;
         _goToTagretPosition = false;
+        _isOnWall = false;
 
         Speed += Random.Range(-2, 2);
     }
@@ -53,7 +56,7 @@ public class Ant : MonoBehaviour
         _timeFromLastMark += Time.deltaTime;
 
         //Put Marker
-        if (_timeFromLastMark > TimeToMark && _markersAvailableAmount > 0)
+        if (!_isOnWall && _timeFromLastMark > TimeToMark && _markersAvailableAmount > 0)
         {
             _timeFromLastMark = 0;
             Marker marker = Instantiate(_isBusy ? ToFoodMarker : ToHomeMarker, transform.position, Quaternion.identity)
@@ -78,7 +81,7 @@ public class Ant : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, MostIntensiveToFoodMarker.transform.position);
                 transform.up = Vector3.Lerp(transform.up,
-                    (MostIntensiveToFoodMarker.transform.position - transform.position).normalized, .25f);
+                    (MostIntensiveToFoodMarker.transform.position - transform.position).normalized, Random.Range(.25f, .75f));
             }
         }
         //Is looking for home
@@ -88,14 +91,14 @@ public class Ant : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, MostIntensiveToHomeMarker.transform.position);
                 transform.up = Vector3.Lerp(transform.up,
-                    (MostIntensiveToHomeMarker.transform.position - transform.position).normalized, .25f);
+                    (MostIntensiveToHomeMarker.transform.position - transform.position).normalized, Random.Range(.25f, .75f));
             }
         }
 
         //Random direction change
         if (Random.Range(0, 100) > 90)
         {
-            transform.Rotate(Vector3.forward, Random.Range(-15, 15));
+            transform.Rotate(Vector3.forward, Random.Range(-30, 30));
         }
 
         //Return to sandbox area
@@ -236,7 +239,13 @@ public class Ant : MonoBehaviour
 
     public void OnWallTouchHandler(Collider2D other)
     {
+        _isOnWall = true;
         transform.position -= transform.up;
         transform.Rotate(Vector3.forward, Random.Range(-180, 180));
+    }
+    
+    public void OnWallDetouchHandler(Collider2D other)
+    {
+        _isOnWall = false;
     }
 }

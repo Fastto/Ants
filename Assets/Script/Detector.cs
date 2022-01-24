@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * TODO: Decline to choose visited marker
+ */
 public class Detector : MonoBehaviour
 {
     private Ant _ant;
@@ -51,6 +54,10 @@ public class Detector : MonoBehaviour
         if (CompareTag("MarkerDetector") && (other.CompareTag("ToHome") || other.CompareTag("ToFood")))
         {
             _ant.OnMarkerLostHandler(other);
+        }
+        else if (other.CompareTag("Wall") && CompareTag("CollisionDetector"))
+        {
+            _ant.OnWallDetouchHandler(other);
         }
     }
 }
