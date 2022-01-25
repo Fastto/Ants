@@ -23,6 +23,8 @@ public class SimulationManager : MonoBehaviour
     public Slider AntsAmountSlider;
     public Text AntsAmountText;
 
+    public Toggle TrackAntToggle;
+
     private List<GameObject> Ants;
     private List<GameObject> Food;
     public GameObject Home;
@@ -49,6 +51,9 @@ public class SimulationManager : MonoBehaviour
 
     public void OnRestartClick()
     {
+        AntsNumOnStart = 0;
+        TrackAntToggle.isOn = false;
+        
         foreach (var Ant in Ants)
         {
             Destroy(Ant);
@@ -85,5 +90,10 @@ public class SimulationManager : MonoBehaviour
     public void OnAntsAmountChanged()
     {
         AntsAmountText.text = AntsAmountSlider.value.ToString();
+    }
+
+    public GameObject GetRandomAnt()
+    {
+        return Ants[Random.Range(0, Ants.Count - 1)];
     }
 }

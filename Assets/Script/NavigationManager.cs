@@ -9,6 +9,8 @@ public class NavigationManager : MonoBehaviour
 {
     public Slider CameraSizeSlider;
     public Camera MainCamera;
+    public Toggle TrackRandomAnt;
+    public SimulationManager SimManager;
 
     private void Start()
     {
@@ -24,5 +26,19 @@ public class NavigationManager : MonoBehaviour
     public void OnZoom()
     {
         MainCamera.orthographicSize = Scale;
+    }
+
+    public void OnTrackAntChanged()
+    {
+        if (TrackRandomAnt.isOn)
+        {
+            MainCamera.GetComponentInChildren<MainCamera>().Track(
+                SimManager.GetComponentInParent<SimulationManager>().GetRandomAnt()
+                );
+        }
+        else
+        {
+            MainCamera.GetComponentInChildren<MainCamera>().StopTracking();
+        }
     }
 }
