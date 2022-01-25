@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a295818a341724e8b99f7e650ae26046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BurningRatePerSec: 0.98
+  Intensivity: 1
+  BurningRatePerSec: 0.96
   IntensivityLimit: 0.2
 --- !u!58 &7997564921310059870
 CircleCollider2D:

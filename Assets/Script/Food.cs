@@ -14,11 +14,6 @@ public class Food : MonoBehaviour
     void Start()
     {
         transform.Rotate(Vector3.forward, Random.Range(0, 180));
-        transform.position = new Vector3(
-        transform.position.x + Random.Range(-2f, 2f),
-        transform.position.y + Random.Range(-2f, 2f),
-        transform.position.z+ Random.Range(-2f, 2f)
-            );
     }
 
     public void Bite()

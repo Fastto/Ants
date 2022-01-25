@@ -212,8 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToHomeMarker: {fileID: 2031494480309005177, guid: b8451a47496c34767af5cb5fdb025109, type: 3}
   ToFoodMarker: {fileID: 6663537663583614575, guid: 34a66d07b08394e1195eeaf059471d3b, type: 3}
-  MarkersAmount: 100
-  MarkersBurningRate: 0.98
+  MarkersAmount: 50
+  MarkersBurningRate: 0.97
   TimeToMark: 0.2
   Speed: 15
 --- !u!50 &1212137217206968407

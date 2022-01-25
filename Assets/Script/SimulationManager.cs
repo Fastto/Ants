@@ -8,13 +8,12 @@ using Random = UnityEngine.Random;
 
 public class SimulationManager : MonoBehaviour
 {
-
     [SerializeField] private GameObject AntPrefab;
 
     [SerializeField] private GameObject HomeObj;
 
-   private int AntsNumOnStart;
-    
+    private int AntsNumOnStart;
+
     public GameObject HomePrefab;
     public GameObject FoodPrefab;
     public GameObject WallPrefab;
@@ -32,7 +31,7 @@ public class SimulationManager : MonoBehaviour
 
     private void Start()
     {
-        AntsNumOnStart = (int)AntsAmountSlider.value;
+        AntsNumOnStart = (int) AntsAmountSlider.value;
         OnAntsAmountChanged();
 
         Ants = new List<GameObject>();
@@ -43,7 +42,8 @@ public class SimulationManager : MonoBehaviour
     {
         if (AntsNumOnStart > 0 && Random.Range(0, 101) > 70)
         {
-            GameObject Ant = Instantiate(AntPrefab, HomeObj.transform.position, Quaternion.Euler(0,0, Random.Range(0,360)));
+            GameObject Ant = Instantiate(AntPrefab, HomeObj.transform.position,
+                Quaternion.Euler(0, 0, Random.Range(0, 360)));
             Ants.Add(Ant);
             AntsNumOnStart--;
         }
@@ -51,19 +51,23 @@ public class SimulationManager : MonoBehaviour
 
     public void OnRestartClick()
     {
+        //stops everything
         AntsNumOnStart = 0;
         TrackAntToggle.isOn = false;
-        
+
+        //clean everything
         foreach (var Ant in Ants)
         {
             Destroy(Ant);
         }
+
         Ants.Clear();
-        
+
         foreach (var food in Food)
         {
             Destroy(food);
         }
+
         Food.Clear();
 
         GameObject[] ToFoodGameObjects = GameObject.FindGameObjectsWithTag("ToFood");
@@ -74,7 +78,7 @@ public class SimulationManager : MonoBehaviour
                 Destroy(obj);
             }
         }
-        
+
         GameObject[] ToHomeGameObjects = GameObject.FindGameObjectsWithTag("ToHome");
         if (ToHomeGameObjects.Length > 0)
         {
@@ -83,8 +87,86 @@ public class SimulationManager : MonoBehaviour
                 Destroy(obj);
             }
         }
+
+        //build stage
+
+        //empty field, mo food
+        if (SimulationTypeDropdown.value == 0)
+        {
+            Home.transform.position = Vector3.zero;
+        }
+        //fppd placed near the home
+        else if (SimulationTypeDropdown.value == 1)
+        {
+            Home.transform.position = Vector3.zero;
+            int foodQty = 20;
+
+            Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
+            vec *= 50;
+            for (int i = 0; i < foodQty; i++)
+            {
+                GameObject food = Instantiate(FoodPrefab, new Vector3(
+                    vec.x + Random.Range(-5f, 5f),
+                    vec.y + Random.Range(-5f, 5f),
+                    0
+                ), Quaternion.identity);
+                Food.Add(food);
+            }
+        }
+        else if (SimulationTypeDropdown.value == 2)
+        {
+            Home.transform.position = Vector3.zero;
+
+            int cycles = 5;
+
+            for (int j = 0; j < cycles; j++)
+            {
+                int foodQty = 20;
+
+                Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
+                vec *= 50;
+                for (int i = 0; i < foodQty; i++)
+                {
+                    GameObject food = Instantiate(FoodPrefab, new Vector3(
+                        vec.x + Random.Range(-5f, 5f),
+                        vec.y + Random.Range(-5f, 5f),
+                        0
+                    ), Quaternion.identity);
+                    Food.Add(food);
+                }
+            }
+        }
+        else if (SimulationTypeDropdown.value == 3)
+        {
+            Home.transform.position = Vector3.zero;
+
+            int cycles = 7;
+
+            int distance = 60;
+            int distanceStep = 5;
+
+            for (int j = 0; j < cycles; j++)
+            {
+                int foodQty = 20;
+
+                Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
+                vec *= distance;
+                for (int i = 0; i < foodQty; i++)
+                {
+                    GameObject food = Instantiate(FoodPrefab, new Vector3(
+                        vec.x + Random.Range(-5f, 5f),
+                        vec.y + Random.Range(-5f, 5f),
+                        0
+                    ), Quaternion.identity);
+                    Food.Add(food);
+                }
+
+                distance += distanceStep;
+            }
+        }
         
-        AntsNumOnStart = (int)AntsAmountSlider.value;
+        //start ants
+        AntsNumOnStart = (int) AntsAmountSlider.value;
     }
 
     public void OnAntsAmountChanged()
