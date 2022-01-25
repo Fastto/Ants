@@ -199,6 +199,8 @@ public class Ant : MonoBehaviour
             _goToTagretPosition = false;
             MostIntensiveToHomeMarker = null;
             ToHomeList.Clear();
+            
+            other.GetComponentInParent<Food>().Bite();
         }
     }
 
@@ -219,20 +221,10 @@ public class Ant : MonoBehaviour
         Marker marker = other.gameObject.GetComponentInChildren<Marker>();
         if (other.CompareTag("ToHome"))
         {
-            // if (MostIntensiveToHomeMarker == marker)
-            // {
-            //     MostIntensiveToHomeMarker = null;
-            // }
-            
             ToHomeList.Remove(other.gameObject.GetComponentInChildren<Marker>());
         }
         else if (other.CompareTag("ToFood"))
         {
-            // if (MostIntensiveToFoodMarker == marker)
-            // {
-            //     MostIntensiveToFoodMarker = null;
-            // }
-            
             ToFoodList.Remove(other.gameObject.GetComponentInChildren<Marker>());
         }
     }
@@ -240,8 +232,8 @@ public class Ant : MonoBehaviour
     public void OnWallTouchHandler(Collider2D other)
     {
         _isOnWall = true;
-        transform.position -= transform.up;
-        transform.Rotate(Vector3.forward, Random.Range(-180, 180));
+        transform.up *= -1;
+        transform.Rotate(Vector3.forward, Random.Range(-45, 45));
     }
     
     public void OnWallDetouchHandler(Collider2D other)

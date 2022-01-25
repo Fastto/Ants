@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Marker : MonoBehaviour
 {
-    public float Intensivity { get; set; } = 1;
+    public float Intensivity = 1;
 
     [SerializeField] public float BurningRatePerSec = .9f;
 

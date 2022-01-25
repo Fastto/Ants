@@ -147,7 +147,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 4}
+  m_Offset: {x: 0, y: 5.75}
   serializedVersion: 2
   m_Radius: 7
 --- !u!114 &8622424602218969030
@@ -212,9 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToHomeMarker: {fileID: 2031494480309005177, guid: b8451a47496c34767af5cb5fdb025109, type: 3}
   ToFoodMarker: {fileID: 6663537663583614575, guid: 34a66d07b08394e1195eeaf059471d3b, type: 3}
-  MarkersAmount: 50
-  MarkersBurningRate: 0.93
-  TimeToMark: 0.25
+  MarkersAmount: 100
+  MarkersBurningRate: 0.98
+  TimeToMark: 0.2
   Speed: 15
 --- !u!50 &1212137217206968407
 Rigidbody2D:
@@ -342,7 +342,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3}
+  m_Offset: {x: 0, y: 3.75}
   serializedVersion: 2
   m_Radius: 5
 --- !u!114 &9207323966578909600
