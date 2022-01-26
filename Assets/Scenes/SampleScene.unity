@@ -979,8 +979,8 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 50
   m_MaxValue: 120
-  m_WholeNumbers: 0
-  m_Value: 50
+  m_WholeNumbers: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2888,6 +2888,16 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: '#3 Several Food Sources in the different distance'
       m_Image: {fileID: 0}
+    - m_Text: '#4 Food is placed far away from home'
+      m_Image: {fileID: 0}
+    - m_Text: '#5 Walls'
+      m_Image: {fileID: 0}
+    - m_Text: '#6 Maze'
+      m_Image: {fileID: 0}
+    - m_Text: '#7 Wealth'
+      m_Image: {fileID: 0}
+    - m_Text: '#8 Thanks For Watching'
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3257,11 +3267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4238950523150505444, guid: ef268bcebb736408b953ae2f300f5580, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34
+      value: -21.3
       objectReference: {fileID: 0}
     - target: {fileID: 4238950523150505444, guid: ef268bcebb736408b953ae2f300f5580, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.4
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 4238950523150505444, guid: ef268bcebb736408b953ae2f300f5580, type: 3}
       propertyPath: m_LocalPosition.z

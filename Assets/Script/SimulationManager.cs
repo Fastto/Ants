@@ -99,72 +99,20 @@ public class SimulationManager : MonoBehaviour
         else if (SimulationTypeDropdown.value == 1)
         {
             Home.transform.position = Vector3.zero;
-            int foodQty = 20;
-
-            Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
-            vec *= 50;
-            for (int i = 0; i < foodQty; i++)
-            {
-                GameObject food = Instantiate(FoodPrefab, new Vector3(
-                    vec.x + Random.Range(-5f, 5f),
-                    vec.y + Random.Range(-5f, 5f),
-                    0
-                ), Quaternion.identity);
-                Food.Add(food);
-            }
+            GenerateFoodIsland(Home.transform.position, 50, 0, 20, 1, 5);
         }
         else if (SimulationTypeDropdown.value == 2)
         {
             Home.transform.position = Vector3.zero;
 
-            int cycles = 5;
-
-            for (int j = 0; j < cycles; j++)
-            {
-                int foodQty = 20;
-
-                Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
-                vec *= 50;
-                for (int i = 0; i < foodQty; i++)
-                {
-                    GameObject food = Instantiate(FoodPrefab, new Vector3(
-                        vec.x + Random.Range(-5f, 5f),
-                        vec.y + Random.Range(-5f, 5f),
-                        0
-                    ), Quaternion.identity);
-                    Food.Add(food);
-                }
-            }
+            GenerateFoodIsland(Home.transform.position, 50, 0, 20, 5, 5);
         }
         else if (SimulationTypeDropdown.value == 3)
         {
             Home.transform.position = Vector3.zero;
-
-            int cycles = 7;
-
-            int distance = 60;
-            int distanceStep = 5;
-
-            for (int j = 0; j < cycles; j++)
-            {
-                int foodQty = 20;
-
-                Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
-                vec *= distance;
-                for (int i = 0; i < foodQty; i++)
-                {
-                    GameObject food = Instantiate(FoodPrefab, new Vector3(
-                        vec.x + Random.Range(-5f, 5f),
-                        vec.y + Random.Range(-5f, 5f),
-                        0
-                    ), Quaternion.identity);
-                    Food.Add(food);
-                }
-
-                distance += distanceStep;
-            }
+            GenerateFoodIsland(Home.transform.position, 60, 5, 20, 7, 5);
         }
-        
+
         //start ants
         AntsNumOnStart = (int) AntsAmountSlider.value;
     }
@@ -177,5 +125,27 @@ public class SimulationManager : MonoBehaviour
     public GameObject GetRandomAnt()
     {
         return Ants[Random.Range(0, Ants.Count - 1)];
+    }
+
+    public void GenerateFoodIsland(Vector3 HomePosition, float InitialDistanceFromHome, float DistanceStepPerCycle,
+        int FoodAmounterCycle, int CyclesAmount, float FoodIslandRadius)
+    {
+        for (int j = 0; j < CyclesAmount; j++)
+        {
+            Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
+            vec *= InitialDistanceFromHome;
+            vec += HomePosition;
+            for (int i = 0; i < FoodAmounterCycle; i++)
+            {
+                GameObject food = Instantiate(FoodPrefab, new Vector3(
+                    vec.x + Random.Range(-FoodIslandRadius, FoodIslandRadius),
+                    vec.y + Random.Range(-FoodIslandRadius, FoodIslandRadius),
+                    0
+                ), Quaternion.identity);
+                Food.Add(food);
+            }
+
+            InitialDistanceFromHome += DistanceStepPerCycle;
+        }
     }
 }
