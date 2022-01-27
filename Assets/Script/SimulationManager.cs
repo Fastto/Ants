@@ -13,10 +13,10 @@ public class SimulationManager : MonoBehaviour
     [SerializeField] private GameObject HomeObj;
 
     private int AntsNumOnStart;
-
-    public GameObject HomePrefab;
+    
     public GameObject FoodPrefab;
     public GameObject WallPrefab;
+    public GameObject MazePrefab;
 
     public Dropdown SimulationTypeDropdown;
     public Slider AntsAmountSlider;
@@ -26,6 +26,7 @@ public class SimulationManager : MonoBehaviour
 
     private List<GameObject> Ants;
     private List<GameObject> Food;
+    private GameObject Maze;
     public GameObject Home;
 
 
@@ -56,9 +57,9 @@ public class SimulationManager : MonoBehaviour
         TrackAntToggle.isOn = false;
 
         //clean everything
-        foreach (var Ant in Ants)
+        foreach (var ant in Ants)
         {
-            Destroy(Ant);
+            Destroy(ant);
         }
 
         Ants.Clear();
@@ -70,50 +71,77 @@ public class SimulationManager : MonoBehaviour
 
         Food.Clear();
 
-        GameObject[] ToFoodGameObjects = GameObject.FindGameObjectsWithTag("ToFood");
-        if (ToFoodGameObjects.Length > 0)
+        GameObject[] toFoodGameObjects = GameObject.FindGameObjectsWithTag("ToFood");
+        if (toFoodGameObjects.Length > 0)
         {
-            foreach (var obj in ToFoodGameObjects)
+            foreach (var obj in toFoodGameObjects)
             {
                 Destroy(obj);
             }
         }
 
-        GameObject[] ToHomeGameObjects = GameObject.FindGameObjectsWithTag("ToHome");
-        if (ToHomeGameObjects.Length > 0)
+        GameObject[] toHomeGameObjects = GameObject.FindGameObjectsWithTag("ToHome");
+        if (toHomeGameObjects.Length > 0)
         {
-            foreach (var obj in ToHomeGameObjects)
+            foreach (var obj in toHomeGameObjects)
             {
                 Destroy(obj);
             }
+        }
+
+        if (Maze != null)
+        {
+            Destroy(Maze);
+            Maze = null;
         }
 
         //build stage
+        switch (SimulationTypeDropdown.value)
+        {
+            case 1:
+                Home.transform.position = Vector3.zero;
+                GenerateFoodIsland(Home.transform.position, 50, 0, 20, 1, 5);
+                break;
+            case 2:
+                Home.transform.position = Vector3.zero;
+                GenerateFoodIsland(Home.transform.position, 50, 0, 20, 5, 5);
+                break;
+            case 3:
+                Home.transform.position = Vector3.zero;
+                GenerateFoodIsland(Home.transform.position, 60, 5, 20, 7, 5);
+                break;
+            case 4:
+                //Food is placed far away from home
+                Home.transform.position = new Vector3(-55f, 55f, 0);
+                GenerateFoodIsland(new Vector3(55f, -55f, 0), 0, 0, 100, 1, 20);
+                break;
+            case 5:
+                //Walls
+                Home.transform.position = new Vector3(-35f, 35f, 0);
+                GenerateFoodIsland(new Vector3(35f, -35f, 0), 0, 0, 100, 1, 20);
+                Maze = Instantiate(WallPrefab);
+                break;
+            case 6:
+                //Maze
+                Home.transform.position = new Vector3(-35f, 35f, 0);
+                GenerateFoodIsland(new Vector3(35f, -35f, 0), 0, 0, 20, 1, 3);
+                Maze = Instantiate(MazePrefab);
+                break;
+            case 7:
+                //Wealth
+                Home.transform.position = Vector3.zero;
+                GenerateFoodIsland(Home.transform.position, 60, 0, 20, 100, 5);
+                break;
+            case 8:
+                
+            case 0:
+            default:
+                Home.transform.position = Vector3.zero;
+                break;
+                
+        }
 
-        //empty field, mo food
-        if (SimulationTypeDropdown.value == 0)
-        {
-            Home.transform.position = Vector3.zero;
-        }
-        //fppd placed near the home
-        else if (SimulationTypeDropdown.value == 1)
-        {
-            Home.transform.position = Vector3.zero;
-            GenerateFoodIsland(Home.transform.position, 50, 0, 20, 1, 5);
-        }
-        else if (SimulationTypeDropdown.value == 2)
-        {
-            Home.transform.position = Vector3.zero;
-
-            GenerateFoodIsland(Home.transform.position, 50, 0, 20, 5, 5);
-        }
-        else if (SimulationTypeDropdown.value == 3)
-        {
-            Home.transform.position = Vector3.zero;
-            GenerateFoodIsland(Home.transform.position, 60, 5, 20, 7, 5);
-        }
-
-        //start ants
+        //start ants generation
         AntsNumOnStart = (int) AntsAmountSlider.value;
     }
 
@@ -127,25 +155,25 @@ public class SimulationManager : MonoBehaviour
         return Ants[Random.Range(0, Ants.Count - 1)];
     }
 
-    public void GenerateFoodIsland(Vector3 HomePosition, float InitialDistanceFromHome, float DistanceStepPerCycle,
-        int FoodAmounterCycle, int CyclesAmount, float FoodIslandRadius)
+    public void GenerateFoodIsland(Vector3 homePosition, float initialDistanceFromHome, float distanceStepPerCycle,
+        int foodAmountPerCycle, int cyclesAmount, float foodIslandRadius)
     {
-        for (int j = 0; j < CyclesAmount; j++)
+        for (int j = 0; j < cyclesAmount; j++)
         {
             Vector3 vec = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
-            vec *= InitialDistanceFromHome;
-            vec += HomePosition;
-            for (int i = 0; i < FoodAmounterCycle; i++)
+            vec *= initialDistanceFromHome;
+            vec += homePosition;
+            for (int i = 0; i < foodAmountPerCycle; i++)
             {
                 GameObject food = Instantiate(FoodPrefab, new Vector3(
-                    vec.x + Random.Range(-FoodIslandRadius, FoodIslandRadius),
-                    vec.y + Random.Range(-FoodIslandRadius, FoodIslandRadius),
+                    vec.x + Random.Range(-foodIslandRadius, foodIslandRadius),
+                    vec.y + Random.Range(-foodIslandRadius, foodIslandRadius),
                     0
                 ), Quaternion.identity);
                 Food.Add(food);
             }
 
-            InitialDistanceFromHome += DistanceStepPerCycle;
+            initialDistanceFromHome += distanceStepPerCycle;
         }
     }
 }

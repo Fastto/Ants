@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1196057952156325370}
   - component: {fileID: 5318811382904890740}
-  - component: {fileID: 1212137217206968407}
+  - component: {fileID: 2154430089559669131}
   m_Layer: 6
   m_Name: Ant
   m_TagString: Untagged
@@ -212,11 +212,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToHomeMarker: {fileID: 2031494480309005177, guid: b8451a47496c34767af5cb5fdb025109, type: 3}
   ToFoodMarker: {fileID: 6663537663583614575, guid: 34a66d07b08394e1195eeaf059471d3b, type: 3}
-  MarkersAmount: 50
+  MarkersAmount: 70
   MarkersBurningRate: 0.97
   TimeToMark: 0.2
-  Speed: 15
---- !u!50 &1212137217206968407
+  Speed: 30
+--- !u!50 &2154430089559669131
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -224,13 +224,13 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3581557324958472976}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 1000
+  m_AngularDrag: 1000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 2373449888441401639}
   - component: {fileID: 8908837210058480338}
   - component: {fileID: 8904435203513630111}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: CollisionDetector
   m_TagString: CollisionDetector
   m_Icon: {fileID: 0}

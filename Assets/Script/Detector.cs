@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/**
- * TODO: Decline to choose visited marker
- */
 public class Detector : MonoBehaviour
 {
     private Ant _ant;
@@ -43,10 +40,6 @@ public class Detector : MonoBehaviour
                 _ant.OnFoodTouchedHandler(other);
             }
         }
-        else if (other.CompareTag("Wall") && CompareTag("CollisionDetector"))
-        {
-            _ant.OnWallTouchHandler(other);
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -55,9 +48,21 @@ public class Detector : MonoBehaviour
         {
             _ant.OnMarkerLostHandler(other);
         }
-        else if (other.CompareTag("Wall") && CompareTag("CollisionDetector"))
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall") && CompareTag("CollisionDetector"))
         {
-            _ant.OnWallDetouchHandler(other);
+            _ant.OnWallTouchHandler();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall") && CompareTag("CollisionDetector"))
+        {
+            _ant.OnWallTouchHandler();
         }
     }
 }
