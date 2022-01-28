@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 5161336928523269974}
   - component: {fileID: 200718478308623666}
   - component: {fileID: 8622424602218969030}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: ObjectDetector
   m_TagString: ObjectDetector
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 5.75}
+  m_Offset: {x: 0, y: 5}
   serializedVersion: 2
   m_Radius: 7
 --- !u!114 &8622424602218969030
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 3824085510082788295}
   - component: {fileID: 4035046956264943630}
   - component: {fileID: 9207323966578909600}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: MarkerDetector
   m_TagString: MarkerDetector
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 3.75}
+  m_Offset: {x: 0, y: 3.5}
   serializedVersion: 2
   m_Radius: 5
 --- !u!114 &9207323966578909600

@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class Marker : MonoBehaviour
 {
@@ -73,6 +69,8 @@ public class Marker : MonoBehaviour
                 if (other.GetComponentInChildren<Marker>().Intensivity > Intensivity)
                 {
                     _collider.enabled = false;
+                    BurningRatePerSec = .8f;
+                    //Destroy(gameObject);
                 }
             }
         }

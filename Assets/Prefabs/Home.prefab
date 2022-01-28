@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1592233422383868807}
   - component: {fileID: 5290744470447447021}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Ant_hill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4238950523150505444}
   - component: {fileID: 5993365504226510197}
   - component: {fileID: 3292525740247427089}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: Home
   m_TagString: Home
   m_Icon: {fileID: 0}

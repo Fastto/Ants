@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -72,7 +70,7 @@ public class Ant : MonoBehaviour
         if (_goToTagretPosition)
         {
             transform.up = Vector3.Lerp(transform.up,
-                (_targetPosition - transform.position).normalized, .5f);
+                (_targetPosition - transform.position).normalized, .25f);
         }
         //Is looking for food
         else if (!_isBusy)
@@ -81,7 +79,7 @@ public class Ant : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, MostIntensiveToFoodMarker.transform.position);
                 transform.up = Vector3.Lerp(transform.up,
-                    (MostIntensiveToFoodMarker.transform.position - transform.position).normalized, Random.Range(.25f, .75f));
+                    (MostIntensiveToFoodMarker.transform.position - transform.position).normalized, .25f);
             }
         }
         //Is looking for home
@@ -91,7 +89,7 @@ public class Ant : MonoBehaviour
             {
                 Debug.DrawLine(transform.position, MostIntensiveToHomeMarker.transform.position);
                 transform.up = Vector3.Lerp(transform.up,
-                    (MostIntensiveToHomeMarker.transform.position - transform.position).normalized, Random.Range(.25f, .75f));
+                    (MostIntensiveToHomeMarker.transform.position - transform.position).normalized, .25f);
             }
         }
 
@@ -170,7 +168,7 @@ public class Ant : MonoBehaviour
     {
         if (_isBusy)
         {
-            transform.Rotate(Vector3.forward, 180);
+            transform.Rotate(Vector3.forward, Random.Range(150, 210));
             
             _isBusy = false;
             _markersAvailableAmount = MarkersAmount;

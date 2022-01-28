@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -108,20 +105,20 @@ public class SimulationManager : MonoBehaviour
         {
             case 1:
                 Home.transform.position = Vector3.zero;
-                GenerateFoodIsland(Home.transform.position, 50, 0, 20, 1, 5);
+                GenerateFoodIsland(Home.transform.position, 50, 0, 100, 1, 10);
                 break;
             case 2:
                 Home.transform.position = Vector3.zero;
-                GenerateFoodIsland(Home.transform.position, 50, 0, 20, 5, 5);
+                GenerateFoodIsland(Home.transform.position, 50, 0, 50, 5, 7);
                 break;
             case 3:
                 Home.transform.position = Vector3.zero;
-                GenerateFoodIsland(Home.transform.position, 60, 5, 20, 7, 5);
+                GenerateFoodIsland(Home.transform.position, 60, 5, 50, 7, 7);
                 break;
             case 4:
                 //Food is placed far away from home
                 Home.transform.position = new Vector3(-55f, 55f, 0);
-                GenerateFoodIsland(new Vector3(55f, -55f, 0), 0, 0, 100, 1, 20);
+                GenerateFoodIsland(new Vector3(55f, -55f, 0), 0, 0, 200, 1, 25);
                 break;
             case 5:
                 //Walls
@@ -132,13 +129,13 @@ public class SimulationManager : MonoBehaviour
             case 6:
                 //Maze
                 Home.transform.position = new Vector3(-35f, 35f, 0);
-                GenerateFoodIsland(new Vector3(35f, -35f, 0), 0, 0, 20, 1, 3);
+                GenerateFoodIsland(new Vector3(35f, -35f, 0), 0, 0, 50, 1, 3);
                 Maze = Instantiate(MazePrefab);
                 break;
             case 7:
                 //Wealth
                 Home.transform.position = Vector3.zero;
-                GenerateFoodIsland(Home.transform.position, 60, 0, 20, 100, 5);
+                GenerateFoodIsland(Home.transform.position, 60, 0, 50, 150, 10);
                 break;
             case 8:
                 //Subscribe

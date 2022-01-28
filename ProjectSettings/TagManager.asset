@@ -25,10 +25,10 @@ TagManager:
   - Ground
   - WallDetector
   - Wall
-  - 
-  - 
-  - 
-  - 
+  - MarkerDetector
+  - ObjectDetector
+  - Food
+  - Home
   - 
   - 
   - 
