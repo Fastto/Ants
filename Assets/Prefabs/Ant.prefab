@@ -192,8 +192,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1550151427560826049}
-  - {fileID: 3824085510082788295}
   - {fileID: 2373449888441401639}
+  - {fileID: 3824085510082788295}
   - {fileID: 5161336928523269974}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   ToHomeMarker: {fileID: 2031494480309005177, guid: b8451a47496c34767af5cb5fdb025109, type: 3}
   ToFoodMarker: {fileID: 6663537663583614575, guid: 34a66d07b08394e1195eeaf059471d3b, type: 3}
   MarkersAmount: 70
-  MarkersBurningRate: 0.97
+  MarkersBurningRate: 0.95
   TimeToMark: 0.2
   Speed: 30
 --- !u!50 &2154430089559669131
@@ -267,7 +267,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1196057952156325370}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8908837210058480338
 CircleCollider2D:
@@ -327,7 +327,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1196057952156325370}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &4035046956264943630
 CircleCollider2D:
