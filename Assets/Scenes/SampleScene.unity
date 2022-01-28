@@ -548,6 +548,7 @@ MonoBehaviour:
   FoodPrefab: {fileID: 8578462734917976946, guid: 0ebfa81b724734caf856355abb4c16d2, type: 3}
   WallPrefab: {fileID: 5581907671320654770, guid: 6c8b5b1a29fae4e3eb629175c42a8109, type: 3}
   MazePrefab: {fileID: 8932391717459117897, guid: 14889b8d905124b05bb7e561810622a2, type: 3}
+  SubscribePrefab: {fileID: 7880476756699760203, guid: e876871c5f8b74bb1b59c25af680a377, type: 3}
   SimulationTypeDropdown: {fileID: 1752251050}
   AntsAmountSlider: {fileID: 1377396993}
   AntsAmountText: {fileID: 914194812}

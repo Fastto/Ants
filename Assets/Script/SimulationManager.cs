@@ -17,6 +17,7 @@ public class SimulationManager : MonoBehaviour
     public GameObject FoodPrefab;
     public GameObject WallPrefab;
     public GameObject MazePrefab;
+    public GameObject SubscribePrefab;
 
     public Dropdown SimulationTypeDropdown;
     public Slider AntsAmountSlider;
@@ -27,6 +28,7 @@ public class SimulationManager : MonoBehaviour
     private List<GameObject> Ants;
     private List<GameObject> Food;
     private GameObject Maze;
+    private GameObject Subscribe;
     public GameObject Home;
 
 
@@ -94,6 +96,12 @@ public class SimulationManager : MonoBehaviour
             Destroy(Maze);
             Maze = null;
         }
+        
+        if (Subscribe != null)
+        {
+            Destroy(Subscribe);
+            Subscribe = null;
+        }
 
         //build stage
         switch (SimulationTypeDropdown.value)
@@ -133,7 +141,10 @@ public class SimulationManager : MonoBehaviour
                 GenerateFoodIsland(Home.transform.position, 60, 0, 20, 100, 5);
                 break;
             case 8:
-                
+                //Subscribe
+                Home.transform.position = new Vector3(-0f, 40f, 0);
+                Subscribe = Instantiate(SubscribePrefab);
+                break;
             case 0:
             default:
                 Home.transform.position = Vector3.zero;
