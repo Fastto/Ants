@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,21 +39,36 @@ public class SimulationManager : MonoBehaviour
         Food = new List<GameObject>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnRestartClick();
+        }
+    }
+
     private void FixedUpdate()
     {
         if (AntsNumOnStart > 0 && Random.Range(0, 101) > 70)
         {
-            GameObject Ant = Instantiate(AntPrefab, HomeObj.transform.position,
-                Quaternion.Euler(0, 0, Random.Range(0, 360)));
-            Ants.Add(Ant);
-            AntsNumOnStart--;
+            GenerateAnt();
         }
+    }
+
+    private void GenerateAnt()
+    {
+        GameObject Ant = Instantiate(AntPrefab, HomeObj.transform.position,
+                Quaternion.Euler(0, 0, Random.Range(0, 360)));
+        Ants.Add(Ant);
+        AntsNumOnStart--;
     }
 
     public void OnRestartClick()
     {
         //stops everything
         AntsNumOnStart = 0;
+
+        bool isTrackingAnt = TrackAntToggle.isOn;
         TrackAntToggle.isOn = false;
 
         //clean everything
@@ -151,6 +167,10 @@ public class SimulationManager : MonoBehaviour
 
         //start ants generation
         AntsNumOnStart = (int) AntsAmountSlider.value;
+        GenerateAnt();
+
+        //track ant if it was enabled
+        TrackAntToggle.isOn = isTrackingAnt;
     }
 
     public void OnAntsAmountChanged()
