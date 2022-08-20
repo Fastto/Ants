@@ -75,4 +75,9 @@ public class Marker : MonoBehaviour
             }
         }
     }
+
+    public void Remove()
+    {
+        Destroy(gameObject);
+    }
 }

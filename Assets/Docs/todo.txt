@@ -1,0 +1,43 @@
+In Progress:
+
+To Do:
+- add layer for markers
+- remove physical markers
+- write to the markers layer
+- read from the markers layer
+- display markers layer
+- detect direction
+- decrease markers layer
+- experiment with and view, stretch?
+- visual style of the field
+- war fog
+
+_________
+
+1.
+Single colony is looking for food near stones
+
+2.
+new ant costs food
+big amount of ants burns food
+
+3.
+several colonies are looking for food
+warriors
+markers of enemies
+
+4.
+AI - type of ant to build - worker/warrior
+train in different conditions
+- 1 alone
+- 2 couple, near food
+- 3 couple far from the food
+
+place at the same conditions
+
+5.
+Human plays with AI
+
+5.
+build colony to increase the limit of houses
+

@@ -15,7 +15,15 @@ public class Ant : MonoBehaviour
     [SerializeField] private float TimeToMark = .2f;
 
     [SerializeField] private int Speed = 10;
-
+    
+    [SerializeField] private float randomTurnMaxAngle = 15f;
+    [SerializeField] private float randomTurnProbability = .1f;
+    
+    [SerializeField] private float minX = 0f;
+    [SerializeField] private float maxX = 192f;
+    [SerializeField] private float minY = 0f;
+    [SerializeField] private float maxY = 108f;
+    
 
     //For internal use
     private float _timeFromLastMark;
@@ -94,16 +102,19 @@ public class Ant : MonoBehaviour
         }
 
         //Random direction change
-        if (Random.Range(0, 100) > 90)
+        if (Random.value < randomTurnProbability)
         {
-            transform.Rotate(Vector3.forward, Random.Range(15, -15));
+            transform.Rotate(Vector3.forward, Random.Range(-randomTurnMaxAngle, randomTurnMaxAngle));
         }
 
         //Return to sandbox area
-        if (_rigidbody2D.position.magnitude > 100)
+        if (_rigidbody2D.position.x < minX 
+            || _rigidbody2D.position.x > maxX
+            || _rigidbody2D.position.y < minY
+            || _rigidbody2D.position.y > maxY)
         {
-            _rigidbody2D.MovePosition(transform.position * .99f);
-            transform.Rotate(Vector3.forward, Random.Range(168, 195));
+            _rigidbody2D.MovePosition(transform.position - transform.up);
+            transform.Rotate(Vector3.forward, 180 + Random.Range(-randomTurnMaxAngle, randomTurnMaxAngle));
         }
         else
         {
